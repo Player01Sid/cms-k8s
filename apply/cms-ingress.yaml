@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: cms-ingress
   annotations:
 #    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     nginx.ingress.kubernetes.io/rewrite-target: /
