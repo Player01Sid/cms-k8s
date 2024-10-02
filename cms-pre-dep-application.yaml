@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cms-pre-dep
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Player01Sid/cms-k8s.git
+    targetRevision: master
+    path: pre-dep
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cms
