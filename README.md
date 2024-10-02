@@ -1,6 +1,7 @@
 # CMS Kubernetes Manifests
 
 ## Installation
-- Apply ./apply/pre-dep/* files first.
-- Apply rest files in ./apply
-- Apply files in .
+- Apply ./pre-dep/* files first.
+- Install ngnx-ingress
+- Apply rest files in ./apply/*
+- If certificate s expired, apply ./certificate/* files to issue new secret.
