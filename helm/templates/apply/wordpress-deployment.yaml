@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: cms
+spec:
+  replicas: {{ .Values.wordpressReplica }}
+  selector:
+    matchLabels:
+      app: cms
+      name: wordpress-pod  
+  template:
+    metadata:
+      name: wordpress-pod
+      labels:
+        app: cms
+        name: wordpress-pod
+    spec:
+      containers:
+      - name: wordpress
+        image: "{{ .Values.wordpressImage.name }}:{{ .Values.wordpressImage.tag }}"
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: database
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_USER
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_PASSWORD
+        - name: WORDPRESS_DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_DATABASE
+        ports:
+        - containerPort: 80

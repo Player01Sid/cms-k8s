@@ -1,0 +1,1 @@
+Make sure templates/pre-dep/* files are applied first before templates/apply/*

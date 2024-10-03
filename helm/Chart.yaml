@@ -1,0 +1,9 @@
+apiVersion: 2
+name: cms
+description: CMS Kubernetes Deployment
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"
