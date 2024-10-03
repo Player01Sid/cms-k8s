@@ -1,6 +1,6 @@
 hostname: cmsid.crabdance.com
-wordpressReplica: 2
-joomlaReplica: 2
+wordpressReplica: 3
+joomlaReplica: 3
 
 namespace: default
 
