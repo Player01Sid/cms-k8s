@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cms-helm-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: helm
+    repoURL: "https://github.com/Player01Sid/cms-k8s.git"
+    targetRevision: master
+    helm:
+      releaseName: cms-app
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace==true
