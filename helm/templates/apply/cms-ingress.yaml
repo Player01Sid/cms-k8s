@@ -7,6 +7,7 @@ metadata:
 #    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 #    nginx.ingress.kubernetes.io/rewrite-target: /
     traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
