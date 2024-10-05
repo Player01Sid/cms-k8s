@@ -19,9 +19,14 @@ spec:
         value: "4"
       - name: "namespace"
         value: "cms-app"
+#      - name: "wordpressImage.name"
+#        value: "wordpress"
+#      - name: "wordpressImage.tag"
+#        value: "latest"
   syncPolicy:
     automated:
       prune: true  
       selfHeal: true
     syncOptions:
       - CreateNamespace==true
+#      - Refresh=30s
