@@ -35,4 +35,6 @@ Follow the steps to configure server to host without TLS.
   ...
 ```
 - Restart argocd-server deployment
+```bash
   kubectl rollout restart deployment argocd-server -n argocd
+```
