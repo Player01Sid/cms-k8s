@@ -1,3 +1,4 @@
+# Custom Configurations of ArgoCD
 
 ## Configuring Healthy status of Ingress
 Add following lines *argocd-cm* configmap
