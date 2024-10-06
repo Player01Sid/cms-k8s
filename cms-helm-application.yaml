@@ -16,9 +16,9 @@ spec:
       releaseName: cms-app
       parameters:
       - name: "wordpressReplica"
-        value: "4"
-      - name: "namespace"
-        value: "cms-app"
+        value: "2"
+#      - name: "namespace"
+#        value: "cms-app"
 #      - name: "wordpressImage.name"
 #        value: "wordpress"
 #      - name: "wordpressImage.tag"
@@ -29,4 +29,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace==true
-#      - Refresh=30s
+      - Refresh=30s

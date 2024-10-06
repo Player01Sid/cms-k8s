@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argoapi-cert
+  namespace: default
+spec:
+  dnsNames:
+    - argosid.crabdance.com
+  secretName: argoapi-tls
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
