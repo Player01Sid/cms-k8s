@@ -1,7 +1,7 @@
 
 ## Configuring Healthy status of Ingress
 Add following lines *argocd-cm* configmap
-
+```yaml
   apiVersion: v1
   data:
     resource.customizations: |
@@ -21,16 +21,17 @@ Add following lines *argocd-cm* configmap
           return hs
   kind: ConfigMap
   metadata:
-
+```
 ## Configuring argocd-server without tls
 Follow the steps to configure server to host without TLS.
 - Add following lines to *argocd-cmd-params-cm* configmap
+```yaml
   apiVersion: v1
   data:
     server.insecure: "true"
   kind: ConfigMap
   metadata:
   ...
-
+```
 - Restart argocd-server deployment
   kubectl rollout restart deployment argocd-server -n argocd
