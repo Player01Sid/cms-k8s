@@ -22,6 +22,7 @@ data:
         return hs
 kind: ConfigMap
 metadata:
+...
 ```
 ## Configuring argocd-server without tls
 Follow the steps to configure server to host without TLS.
