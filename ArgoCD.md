@@ -6,14 +6,14 @@ Add following lines *argocd-cm* configmap
 apiVersion: v1
 data:
   resource.customizations: |
-  extensions/Ingress:
+    extensions/Ingress:
       health.lua: |
         hs = {}
         if obj.status ~= nil then
           hs.status = "Healthy"
         end
         return hs
-  networking.k8s.io/Ingress:
+    networking.k8s.io/Ingress:
       health.lua: |
         hs = {}
         if obj.status ~= nil then
