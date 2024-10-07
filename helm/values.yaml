@@ -1,9 +1,0 @@
-hostname: cmsid.crabdance.com
-wordpressReplica: 3
-joomlaReplica: 3
-
-namespace: default
-
-wordpressImage:
-  name: wordpress
-  tag: latest
