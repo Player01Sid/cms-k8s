@@ -15,8 +15,8 @@ spec:
     helm:
       releaseName: cms-app
       parameters:
-      - name: "wordpressReplica"
-        value: "2"
+      - name: "wordpress.replicas"
+        value: "3"
 #      - name: "namespace"
 #        value: "cms-app"
 #      - name: "wordpressImage.name"
