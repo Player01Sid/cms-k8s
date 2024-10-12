@@ -18,7 +18,7 @@ spec:
       - name: "wordpress.replicas"
         value: "3"
       - name: "namespace"
-        value: "default"
+        value: "cms-app"
 #      - name: "wordpressImage.name"
 #        value: "wordpress"
 #      - name: "wordpressImage.tag"
