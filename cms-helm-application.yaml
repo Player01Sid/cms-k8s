@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: default
     server: "https://kubernetes.default.svc"
-  project: default
+  project: cms-app
   source:
     path: .
     repoURL: "https://github.com/Player01Sid/cms-helm.git"
@@ -17,8 +17,8 @@ spec:
       parameters:
       - name: "wordpress.replicas"
         value: "3"
-#      - name: "namespace"
-#        value: "cms-app"
+      - name: "namespace"
+        value: "cms-app"
 #      - name: "wordpressImage.name"
 #        value: "wordpress"
 #      - name: "wordpressImage.tag"
