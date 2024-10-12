@@ -5,9 +5,9 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: default
+    namespace: cms-app
     server: "https://kubernetes.default.svc"
-  project: cms-app
+  project: default
   source:
     path: .
     repoURL: "https://github.com/Player01Sid/cms-helm.git"
