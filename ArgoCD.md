@@ -28,14 +28,14 @@ metadata:
 Follow the steps to configure server to host without TLS.
 - Add following lines to *argocd-cmd-params-cm* configmap
 ```yaml
-  apiVersion: v1
-  data:
-    server.insecure: "true"
-  kind: ConfigMap
-  metadata:
-  ...
+apiVersion: v1
+data:
+  server.insecure: "true"
+kind: ConfigMap
+metadata:
+...
 ```
 - Restart argocd-server deployment
 ```bash
-  kubectl rollout restart deployment argocd-server -n argocd
+kubectl rollout restart deployment argocd-server -n argocd
 ```
