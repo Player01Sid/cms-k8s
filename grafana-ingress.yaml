@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argo-ingress
-  namespace: argocd
+  namespace: monitoring
   annotations:
 #    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 #    nginx.ingress.kubernetes.io/rewrite-target: /
@@ -11,17 +11,17 @@ metadata:
 spec:
   tls:
   - hosts:
-    - argosid.crabdance.com
-    secretName: argocd-secret
+    - grafanasid.crabdance.com
+    secretName: grafana-tls
   ingressClassName: traefik
   rules:
-  - host: argosid.crabdance.com
+  - host: grafanasid.crabdance.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: argocd-server
+            name: kube-prometheus-stack-grafana
             port:
               number: 80
