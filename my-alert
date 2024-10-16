@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kube-prometheus-operator
+    meta.helm.sh/release-namespace: monitoring
+  creationTimestamp: "2024-10-12T11:00:50Z"
+  generation: 1
+  labels:
+    app: kube-prometheus-stack
+    app.kubernetes.io/instance: kube-prometheus-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    app.kubernetes.io/version: 65.2.0
+    heritage: Helm
+    release: kube-prometheus-operator
+  name: my-alerts 
+  namespace: monitoring
+spec:
+  groups:
+  - name: myGroup
+    rules:
+    - alert: myAlert
+      annotations:
+        description: 'etcd cluster "{{ $labels.job }}": member {{ $labels.instance }} has no leader.'
+        summary: test summary 
+      expr: sum(container_memory_rss) > 90000000 
+      for: 30s
+      labels:
+        severity: critical
