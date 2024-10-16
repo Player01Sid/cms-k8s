@@ -17,7 +17,6 @@ metadata:
   labels:
     controller.cert-manager.io/fao: "true"
   name: userapi-tls
-  namespace: default
   resourceVersion: "34367"
   uid: f472a13c-12b2-43f3-a0b8-efc9ec8bc675
 type: kubernetes.io/tls
