@@ -15,7 +15,7 @@ spec:
 #    secretName: grafana-tls
   ingressClassName: traefik
   rules:
-  - host: grafanasid.crabdance.com
+  - host: prometheussid.crabdance.com
     http:
       paths:
       - path: /
