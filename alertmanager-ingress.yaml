@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alertmanager-ingress
+  namespace: monitoring
+  annotations:
+#    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/rewrite-target: /
+    argocd.argoproj.io/wave: "1" 
+spec:
+#  tls:
+#  - hosts:
+#    - grafanasid.crabdance.com
+#    secretName: grafana-tls
+  ingressClassName: traefik
+  rules:
+  - host: alertsid.crabdance.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-alertmanager
+            port:
+              number: 9093
