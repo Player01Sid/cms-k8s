@@ -12,7 +12,7 @@ spec:
   tls:
   - hosts:
     - argosid.crabdance.com
-    secretName: argocd-secret
+    secretName: argocd-tls
   ingressClassName: traefik
   rules:
   - host: argosid.crabdance.com
