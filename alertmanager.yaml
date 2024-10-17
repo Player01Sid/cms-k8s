@@ -1,0 +1,36 @@
+# Whether to notify about resolved alerts.
+send_resolved: true
+
+# The Slack webhook URL. Either api_url or api_url_file should be set.
+# Defaults to global settings if none are set here.
+api_url: "https://hooks.slack.com/services/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"
+#[ api_url_file: <filepath> | default = global.slack_api_url_file ]
+
+# The channel or user to send notifications to.
+#channel: <tmpl_string>
+
+# API request data as defined by the Slack webhook API.
+#[ icon_emoji: <tmpl_string> ]
+#[ icon_url: <tmpl_string> ]
+#[ link_names: <boolean> | default = false ]
+#[ username: <tmpl_string> | default = '{{ template "slack.default.username" . }}' ]
+# The following parameters define the attachment.
+#actions:
+#  [ <action_config> ... ]
+#[ callback_id: <tmpl_string> | default = '{{ template "slack.default.callbackid" . }}' ]
+#[ color: <tmpl_string> | default = '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}' ]
+#[ fallback: <tmpl_string> | default = '{{ template "slack.default.fallback" . }}' ]
+#fields:
+#  [ <field_config> ... ]
+#[ footer: <tmpl_string> | default = '{{ template "slack.default.footer" . }}' ]
+#[ mrkdwn_in: '[' <string>, ... ']' | default = ["fallback", "pretext", "text"] ]
+#[ pretext: <tmpl_string> | default = '{{ template "slack.default.pretext" . }}' ]
+#[ short_fields: <boolean> | default = false ]
+#[ text: <tmpl_string> | default = '{{ template "slack.default.text" . }}' ]
+#[ title: <tmpl_string> | default = '{{ template "slack.default.title" . }}' ]
+#[ title_link: <tmpl_string> | default = '{{ template "slack.default.titlelink" . }}' ]
+#[ image_url: <tmpl_string> ]
+#[ thumb_url: <tmpl_string> ]
+
+# The HTTP client's configuration.
+#[ http_config: <http_config> | default = global.http_config ]
