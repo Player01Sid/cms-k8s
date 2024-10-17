@@ -2,19 +2,18 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   annotations:
-    meta.helm.sh/release-name: kube-prometheus-operator
+    meta.helm.sh/release-name: kube-prometheus-stack
     meta.helm.sh/release-namespace: monitoring
-  creationTimestamp: "2024-10-12T11:00:50Z"
-  generation: 1
+    prometheus-operator-validated: "true"
   labels:
     app: kube-prometheus-stack
-    app.kubernetes.io/instance: kube-prometheus-operator
+    app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
     app.kubernetes.io/version: 65.2.0
     heritage: Helm
-    release: kube-prometheus-operator
-  name: my-alerts 
+    release: kube-prometheus-stack
+  name: my-prometheusrule
   namespace: monitoring
 spec:
   groups:
