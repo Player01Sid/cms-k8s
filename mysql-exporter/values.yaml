@@ -1,26 +1,20 @@
-#serviceMonitor:
-#  enabled: true
-#  additionalLabels:
-#    release: kube-prometheus-stack
+serviceMonitor:
+  enabled: true
+  additionalLabels:
+    release: kube-prometheus-stack
 mysql:
   db: ""
   host: "database.cms-app.svc.cluster.local"
-  # config my.cnf https://dev.mysql.com/doc/c-api/8.0/en/mysql-options.html
-  additionalConfig:
-    # - connect-timeout=5
-    # - debug
   pass: ""
   port: 3306
   protocol: ""
   user: "user"
-  # secret with full config my.cnf
   existingConfigSecret:
     name: ""
     key: ""
-  # secret only containing the password
   existingPasswordSecret:
     name: "mysql-secret"
     key: "MYSQL_PASSWORD"
 
-service:
-  enabled: true
+#service:
+#  enabled: true
