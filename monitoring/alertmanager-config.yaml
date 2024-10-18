@@ -7,10 +7,6 @@ metadata:
     alertmanagerConfig: my-alertmanager-config 
     release: kube-prometheus-stack
 spec:
-  global:
-    resolve_timeout: 5m
-    slack_api_url: 'https://hooks.slack.com/services/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'
-
   route:
     receiver: 'slack-notifications'
     repeatInterval: 1s
@@ -19,6 +15,7 @@ spec:
   - name: 'slack-notifications'
     slackConfigs:
     - channel: '#prometheus-alert-webhook'
+      url: 'https://hooks.slack.com/services/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'
       sendResolved: true
       title: "test"
       text: "test"  
