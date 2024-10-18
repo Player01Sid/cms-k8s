@@ -13,4 +13,4 @@ spec:
   receivers:
   - name: 'webhook'
     webhookConfigs:
-    - url: 'https://hooks.slack.com/services/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'
+    - url: 'https://hooks.slack.com/services/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'
