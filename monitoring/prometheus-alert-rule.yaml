@@ -13,17 +13,18 @@ metadata:
     app.kubernetes.io/version: 65.2.0
     heritage: Helm
     release: kube-prometheus-stack
-  name: my-prometheusrule
+  name: cms-prometheus-rules 
   namespace: monitoring
 spec:
   groups:
-  - name: myGroup
+  - name: cms-alerts
     rules:
-    - alert: myAlert
+    - alert: cms-memory-alert
       annotations:
-        description: 'etcd cluster "{{ $labels.job }}": member {{ $labels.instance }} has no leader.'
-        summary: test summary 
+        description: "Value of {{ $labels.metric }} exceeded than 90000000."
+        summary: "Memory consumed by CMS exceeded 600MB."
       expr: sum(container_memory_rss) > 90000000 
       for: 30s
       labels:
         severity: critical
+        metric: "sum(container_memory_rss)"
