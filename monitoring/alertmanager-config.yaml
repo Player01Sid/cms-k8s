@@ -3,15 +3,15 @@ kind: AlertmanagerConfig
 metadata:
   name: config-example
   labels:
-    alertmanagerConfig: example
+    alertmanagerConfig: my-alertmanager-config 
 spec:
   route:
-    groupBy: ['job']
+    groupBy: ['']
     groupWait: 30s
-    groupInterval: 5m
-    repeatInterval: 12h
+    groupInterval: 1m
+    repeatInterval: 1h
     receiver: 'webhook'
   receivers:
   - name: 'webhook'
     webhookConfigs:
-    - url: 'http://example.com/'
+    - url: 'https://hooks.slack.com/services/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'
