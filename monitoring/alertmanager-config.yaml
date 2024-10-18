@@ -17,9 +17,9 @@ spec:
 
   receivers:
   - name: 'slack-notifications'
-    slack_configs:
+    slackConfigs:
     - channel: '#prometheus-alert-webhook'
-      send_resolved: true
+      sendResolved: true
       title: "test"
       text: "test"  
 
