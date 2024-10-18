@@ -8,11 +8,8 @@ metadata:
     release: kube-prometheus-stack
 spec:
   route:
-    groupBy: []
-    groupWait: 30s
-    groupInterval: 1m
-    repeatInterval: 1h
     receiver: 'webhook'
+
   receivers:
   - name: 'webhook'
     webhookConfigs:
