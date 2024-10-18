@@ -1,23 +1,21 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: config-example
+  name: global-alert-manager-configuration
   namespace: monitoring
   labels:
-    alertmanagerConfig: my-alertmanager-config 
     release: kube-prometheus-stack
 spec:
-  route:
-    receiver: 'slack-notifications'
-    repeatInterval: 1s
-
   receivers:
-  - name: 'slack-notifications'
-    slackConfigs:
-    - channel: '#prometheus-alert-webhook'
-      url: 'https://hooks.slack.com/services/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'
-      sendResolved: true
-      title: "test"
-      text: "test"  
-
-
+    - name: slack-notifications
+      slackConfigs:
+        - channel: "#prometheus-alert-webhook"
+          sendResolved: true
+          iconEmoji: ":bell:"
+          text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}\nmessage: {{ .CommonAnnotations.message }}"
+  route:
+    matchers:
+      - name: severity
+        value: critical
+    receiver: slack-notifications
+    repeatInterval: 1s
