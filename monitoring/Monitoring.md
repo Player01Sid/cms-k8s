@@ -3,9 +3,21 @@
 CHART : prometheus-community/kube-prometheus-stack
 VALUES:
 ``` yaml
+prometheus:
+  prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
 alertmanager:
+  config:
+    global:
+      slack_api_url: https://hooks.slack.com/services/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
   alertmanagerSpec:
     replicas: 2
+    alertmanagerConfigNamespaceSelector:
+    alertmanagerConfigSelector:
+    alertmanagerConfigMatcherStrategy:
+      type: None
 ```
 
 # Prometheus Rule
@@ -48,19 +60,23 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: config-example
+  name: global-alert-manager-configuration
+  namespace: monitoring
   labels:
-    alertmanagerConfig: example
+    release: kube-prometheus-stack
 spec:
-  route:
-    groupBy: ['job']
-    groupWait: 30s
-    groupInterval: 5m
-    repeatInterval: 12h
-    receiver: 'webhook'
   receivers:
-  - name: 'webhook'
-    webhookConfigs:
-    - url: 'http://example.com/'
+    - name: slack-notifications
+      slackConfigs:
+        - channel: "#prometheus-alert-webhook"
+          sendResolved: true
+          iconEmoji: ":bell:"
+          text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}\nmessage: {{ .CommonAnnotations.message }}"
+  route:
+    matchers:
+      - name: severity
+        value: critical
+    receiver: slack-notifications
+    repeatInterval: 1s
 
 ```

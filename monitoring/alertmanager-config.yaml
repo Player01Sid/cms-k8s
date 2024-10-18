@@ -19,3 +19,4 @@ spec:
         value: critical
     receiver: slack-notifications
     repeatInterval: 1s
+

@@ -23,7 +23,7 @@ spec:
       annotations:
         description: "Value of {{ $labels.metric }} exceeded than 90000000."
         summary: "Memory consumed by CMS exceeded 600MB."
-      expr: sum(container_memory_rss) > 90000000 
+      expr: sum(container_memory_rss{namespace="cms-app"})/(1024*1024) > 600 
       for: 30s
       labels:
         severity: critical
