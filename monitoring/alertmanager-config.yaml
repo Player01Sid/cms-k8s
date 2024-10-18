@@ -2,8 +2,10 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: config-example
+  namespace: monitoring
   labels:
     alertmanagerConfig: my-alertmanager-config 
+    release: kube-prometheus-stack
 spec:
   route:
     groupBy: ['']
