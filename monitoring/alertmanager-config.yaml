@@ -13,7 +13,7 @@ spec:
 
   route:
     receiver: 'slack-notifications'
-    repeat_interval: 1s
+    repeatInterval: 1s
 
   receivers:
   - name: 'slack-notifications'
