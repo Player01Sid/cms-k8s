@@ -22,5 +22,4 @@ spec:
     - cms-app
   selector:
     matchLabels:
-      app: cms
-      name: home-pod
+      app: home
