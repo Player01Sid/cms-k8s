@@ -8,9 +8,7 @@ alertmanager:
     global:
       slack_api_url: https://hooks.slack.com/services/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 
   alertmanagerSpec:
-    enabled: true
-    alertmanagerSpec:
-      forceEnableClusterMode: true
+    forceEnableClusterMode: true
     alertmanagerConfigNamespaceSelector:
     alertmanagerConfigSelector:
     alertmanagerConfigMatcherStrategy:
