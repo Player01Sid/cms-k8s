@@ -20,7 +20,7 @@ alertmanager:
       type: None
 ```
 
-# Prometheus Rule
+## Prometheus Rule
 ``` yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -55,7 +55,7 @@ spec:
 
 ```
 
-# Alert Manager Configuration
+## Alert Manager Configuration
 ``` yaml
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
@@ -80,3 +80,7 @@ spec:
     repeatInterval: 1s
 
 ```
+
+# Home ServiceMonitor
+``` yaml
+
