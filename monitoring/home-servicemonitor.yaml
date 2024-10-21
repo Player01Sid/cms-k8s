@@ -19,8 +19,8 @@ spec:
     port: 80
   namespaceSelector:
     matchNames:
-    - monitoring
+    - cms-app
   selector:
     matchLabels:
-      app.kubernetes.io/instance:
-      app.kubernetes.io/name: prometheus-mysql-exporter
+      app: cms
+      name: home-pod
