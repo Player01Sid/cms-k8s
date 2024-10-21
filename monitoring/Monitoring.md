@@ -83,4 +83,22 @@ spec:
 
 # Home ServiceMonitor
 ``` yaml
-
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+  labels:
+    release: kube-prometheus-stack
+  name: home-exporter
+  namespace: monitoring
+spec:
+  endpoints:
+  - path: /metrics
+    port: http
+  namespaceSelector:
+    matchNames:
+    - cms-app
+  selector:
+    matchLabels:
+      app: home
+```
