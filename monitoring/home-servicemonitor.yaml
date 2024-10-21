@@ -16,7 +16,7 @@ metadata:
 spec:
   endpoints:
   - path: /metrics
-    port: "80"
+    port: http
   namespaceSelector:
     matchNames:
     - cms-app
