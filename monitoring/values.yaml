@@ -2,6 +2,10 @@ prometheus:
   prometheusSpec:
     podMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
+    scrapeInterval: "10s"
+    scrapeTimeout: "20s"
+    evaluationInterval: "10s"
+
 
 alertmanager:
   config:
