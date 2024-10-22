@@ -1,4 +1,5 @@
 prometheus:
+  enabled: true
   prometheusSpec:
     podMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
