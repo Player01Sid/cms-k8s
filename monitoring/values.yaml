@@ -11,7 +11,7 @@ prometheus:
 alertmanager:
   config:
     global:
-      slack_api_url: https://hooks.slack.com/services/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 
+      slack_api_url:  https://hooks.slack.com/services/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
   alertmanagerSpec:
     forceEnableClusterMode: true
     alertmanagerConfigNamespaceSelector:
