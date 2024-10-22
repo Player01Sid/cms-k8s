@@ -12,7 +12,7 @@ spec:
         - channel: "#prometheus-alert-webhook"
           sendResolved: true
           iconEmoji: ":bell:"
-          text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}\nmessage: {{ .CommonAnnotations.message }}"
+          text: "<!channel> \nSummary: Memory consumed by CMS exceeded 600MB. Value of ram used by cms-app namespace exceeded than 600MB.\nDescription: Value of ram used by cms-app namespace exceeded than 600MB.\nMessage: Resources of cms-app namespace are consuming memory more than 600. Actions required!"
   route:
     matchers:
       - name: severity
