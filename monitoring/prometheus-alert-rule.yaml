@@ -21,10 +21,10 @@ spec:
     rules:
     - alert: cms-memory-alert
       annotations:
-        description: "Value of {{ $labels.metric }} exceeded than 90000000."
+        description: "Value of {{ $labels.metric }} exceeded than 600MB."
         summary: "Memory consumed by CMS exceeded 600MB."
       expr: sum(container_memory_rss{namespace="cms-app"})/(1024*1024) > 600 
       for: 30s
       labels:
         severity: critical
-        metric: "sum(container_memory_rss)"
+        metric: "sum(container_memory_rss{namespace="cms-app"})/(1024*1024)"
