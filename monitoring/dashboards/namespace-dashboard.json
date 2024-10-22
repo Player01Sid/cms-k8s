@@ -36,6 +36,19 @@
   ],
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "panels": [],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
       "datasource": {
         "default": true,
         "type": "prometheus",
@@ -80,7 +93,6 @@
               "mode": "off"
             }
           },
-          "displayName": "CPU used by cms-app out of all resources.",
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -109,10 +121,11 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 2,
       "interval": "10s",
+      "maxPerRow": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -125,6 +138,8 @@
           "sort": "none"
         }
       },
+      "repeat": "namespace",
+      "repeatDirection": "h",
       "targets": [
         {
           "datasource": {
@@ -132,178 +147,251 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100*(sum(rate(container_cpu_usage_seconds_total{namespace=\"cms-app\"}[5m])))/(sum(rate(container_cpu_usage_seconds_total[5m])))",
+          "exemplar": false,
+          "expr": "100*(sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[5m])))/(sum(rate(container_cpu_usage_seconds_total[5m])))",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "CPU used by $namespace resources",
           "range": true,
           "refId": "CPU usage [5m]"
         }
       ],
-      "title": "cms-app CPU",
+      "title": "$namespace CPU",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "displayName": "Kilobytes",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
       },
-      "id": 3,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
+      "id": 7,
+      "panels": [
+        {
+          "datasource": {
+            "default": true,
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "displayName": "Memory",
+              "fieldMinMax": false,
+              "mappings": [],
+              "max": 1024,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 700
+                  },
+                  {
+                    "color": "dark-red",
+                    "value": 900
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 2
+          },
+          "id": 1,
+          "interval": "10s",
+          "maxPerRow": 4,
+          "options": {
+            "minVizHeight": 75,
+            "minVizWidth": 75,
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": true,
+            "showThresholdMarkers": true,
+            "sizing": "auto"
+          },
+          "pluginVersion": "11.2.2",
+          "repeat": "namespace",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "sum(container_memory_rss{namespace=\"$namespace\"})/(1024*1024)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Memory Usage"
+            }
           ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"cms-app\"}[5m]))/(1024)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "KBs Recieved"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"cms-app\"}[5m]))/(1024)",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "KBs Sent"
+          "title": "$namespace Memory",
+          "type": "gauge"
         }
       ],
-      "title": "cms-app Network",
-      "type": "stat"
+      "title": "Memory",
+      "type": "row"
     },
     {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "displayName": "MegaBytes",
-          "fieldMinMax": false,
-          "mappings": [],
-          "max": 1024,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 768
-              },
-              {
-                "color": "dark-red",
-                "value": 900
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 8
+        "y": 10
       },
-      "id": 1,
-      "interval": "10s",
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": true,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
-      },
-      "pluginVersion": "11.2.1",
-      "targets": [
+      "id": 6,
+      "panels": [
         {
           "datasource": {
+            "default": true,
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "sum(container_memory_rss{namespace=\"cms-app\"})/(1024*1024)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "Memory Usage"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byFrameRefID",
+                  "options": "Receiving"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Receiving"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byFrameRefID",
+                  "options": "Transmitting"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Transmitting"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 3
+          },
+          "id": 3,
+          "interval": "10s",
+          "maxPerRow": 4,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.2.2",
+          "repeat": "namespace",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"$namespace\"}[5m]))/(1024)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Receiving"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"$namespace\"}[5m]))/(1024)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "Transmitting"
+            }
+          ],
+          "title": "$namespace Network",
+          "type": "stat"
         }
       ],
-      "title": "cms-app Memory",
-      "type": "gauge"
+      "title": "Network",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Disk",
+      "type": "row"
     },
     {
       "datasource": {
@@ -390,8 +478,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 9
+        "x": 0,
+        "y": 12
       },
       "id": 4,
       "interval": "10s",
@@ -451,7 +539,42 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "cms-app",
+            "argocd"
+          ],
+          "value": [
+            "cms-app",
+            "argocd"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(container_memory_rss,namespace)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Namspace",
+        "multi": true,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "qryType": 5,
+          "query": "label_values(container_memory_rss,namespace)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-30m",
@@ -459,8 +582,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "CMS",
+  "title": "Namespace",
   "uid": "fe0xa56ljlgxse",
-  "version": 11,
+  "version": 25,
   "weekStart": ""
 }

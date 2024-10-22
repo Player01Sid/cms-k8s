@@ -89,10 +89,35 @@
           },
           "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "CPU 0"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU 0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "CPU 1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU 1"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 0
@@ -146,14 +171,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "description": "Data received and transmitted over network (ens3).",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "Kilobytes",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -161,15 +189,37 @@
               {
                 "color": "green",
                 "value": null
-              },
+              }
+            ]
+          },
+          "unit": "KBs"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Receiving"
+            },
+            "properties": [
               {
-                "color": "red",
-                "value": 80
+                "id": "displayName",
+                "value": "Receiving"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Transmitting"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Transmitting"
               }
             ]
           }
-        },
-        "overrides": []
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -195,7 +245,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.1",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -207,97 +257,24 @@
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "Receiving"
         },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "de10hkg0rwc1se"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_network_transmit_bytes_total{device=\"ens3\"}[5m])/1024",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Network",
-      "type": "stat"
-    },
-    {
-      "datasource": {},
-      "description": "Active Memory usage by Node.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "displayName": "Megabytes",
-          "mappings": [],
-          "max": 4096,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 3072
-              },
-              {
-                "color": "red",
-                "value": 3584
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 2,
-      "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": true,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
-      },
-      "pluginVersion": "11.2.1",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "de10hkg0rwc1se"
           },
           "editorMode": "builder",
-          "expr": "(node_memory_Active_bytes)/(1024*1024)",
+          "expr": "rate(node_network_transmit_bytes_total{device=\"ens3\"}[5m])/1024",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "Memory"
+          "refId": "Transmitting"
         }
       ],
-      "title": "Memory",
-      "type": "gauge"
+      "title": "Network",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -357,12 +334,38 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "KBs"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Reads"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Reads"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Writes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Writes"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 12,
         "y": 8
@@ -386,7 +389,7 @@
             "type": "prometheus",
             "uid": "de10hkg0rwc1se"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "rate(node_disk_read_bytes_total{device=\"vda\"}[5m])/1024",
           "instant": false,
           "legendFormat": "__auto",
@@ -409,6 +412,79 @@
       ],
       "title": "Disk",
       "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "description": "Active Memory usage by Node.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Megabytes",
+          "mappings": [],
+          "max": 4096,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 3072
+              },
+              {
+                "color": "red",
+                "value": 3584
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "de10hkg0rwc1se"
+          },
+          "editorMode": "builder",
+          "expr": "(node_memory_Active_bytes)/(1024*1024)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Memory"
+        }
+      ],
+      "title": "Memory",
+      "type": "gauge"
     }
   ],
   "schemaVersion": 39,
