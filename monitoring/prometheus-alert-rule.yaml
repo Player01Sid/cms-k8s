@@ -27,4 +27,4 @@ spec:
       for: 30s
       labels:
         severity: critical
-        metric: "sum(container_memory_rss{namespace="cms-app"})/(1024*1024)"
+        metric: sum(container_memory_rss{namespace="cms-app"})/(1024*1024)
